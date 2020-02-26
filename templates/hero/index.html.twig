@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hero index{% endblock %}
+
+{% block body %}
+    <h1>Hero index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>LocalizedName</th>
+                <th>PrimaryAttr</th>
+                <th>AttackType</th>
+                <th>Roles</th>
+                <th>Legs</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hero in heroes %}
+            <tr>
+                <td>{{ hero.id }}</td>
+                <td>{{ hero.name }}</td>
+                <td>{{ hero.localizedName }}</td>
+                <td>{{ hero.primaryAttr }}</td>
+                <td>{{ hero.attackType }}</td>
+                <td>{{ hero.roles|join(', ') }}</td>
+                <td>{{ hero.legs }}</td>
+                <td>
+                    <a href="{{ path('hero_matches_show', {'heroId': hero.id}) }}">matches</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

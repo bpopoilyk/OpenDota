@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hero{% endblock %}
+
+{% block body %}
+    <h1>Matches</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>matchId</th>
+            <th>startTime</th>
+            <th>duration</th>
+            <th>radiantWin</th>
+            <th>leagueId</th>
+            <th>leagueName</th>
+            <th>radiant</th>
+            <th>playerSlot</th>
+            <th>accountId</th>
+            <th>kills</th>
+            <th>deaths</th>
+            <th>assists</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for match in matches %}
+            <tr>
+                <td>{{ match.matchId }}</td>
+                <td>{{ match.startTime | date('Y-m-d H:m:s') }}</td>
+                <td>{{ match.duration }}</td>
+                <td>{{ match.radiantWin }}</td>
+                <td>{{ match.leagueId }}</td>
+                <td>{{ match.leagueName }}</td>
+                <td>{{ match.radiant }}</td>
+                <td>{{ match.playerSlot }}</td>
+                <td>{{ match.accountId }}</td>
+                <td>{{ match.kills }}</td>
+                <td>{{ match.deaths }}</td>
+                <td>{{ match.assists }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('hero_index') }}">back to list</a>
+{% endblock %}
